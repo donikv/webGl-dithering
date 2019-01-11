@@ -9,11 +9,15 @@ class ParticleMesh {
 
         this.indices = obj.indices;
         this.bonds = [];
+        var addedBonds = [];
 
         for(var i = 0; i < obj.indices.length; i+= 3) {
-            this.bonds.push(new Bond(this.vertices_, obj.indices[i], obj.indices[i+1]));
-            this.bonds.push(new Bond(this.vertices_, obj.indices[i+1], obj.indices[i+2]));
-            this.bonds.push(new Bond(this.vertices_, obj.indices[i+2], obj.indices[i]));
+            this.addToBonds(addedBonds, i, i+1, obj);
+            this.addToBonds(addedBonds, i+1, i+2, obj);
+            this.addToBonds(addedBonds, i+2,i, obj);
+            // this.bonds.push(new Bond(this.vertices_, obj.indices[i], obj.indices[i+1]));
+            // this.bonds.push(new Bond(this.vertices_, obj.indices[i+1], obj.indices[i+2]));
+            // this.bonds.push(new Bond(this.vertices_, obj.indices[i+2], obj.indices[i]));
         }
         
         this.rotation = {x:0,y:0,z:0};
@@ -33,6 +37,24 @@ class ParticleMesh {
         this.sides = this.calculateSides();
         this.normales = this.calculateNormales();
     }
+
+    addToBonds(addedIndices, i1, i2, obj) {
+        var shouldReturn = false;
+        addedIndices.forEach(indices => {
+            if((indices.first == i1 && indices.second == i2) || (indices.first == i1 && indices.second == i2)) {
+                shouldReturn = true;
+                return;
+            }
+        });
+        if(shouldReturn) return;
+
+        this.bonds.push(new Bond(this.vertices_, obj.indices[i1], obj.indices[i2]));
+        addedIndices.push({
+            first: i1,
+            second: i2
+        });
+    }
+
     calculateSides() {
         var sides = [];
         var polygonVertices = this.groupedVerticesCached;

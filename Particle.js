@@ -32,7 +32,7 @@ class Particle {
 }
 
 class Bond {
-    constructor(particles, index1, index2, k = 50.0, b = 4.2) {
+    constructor(particles, index1, index2, k = 30.0, b = 4.2) {
         var particle1 = particles[index1];
         var particle2 = particles[index2];
         this.particle1 = particle1;
@@ -64,6 +64,6 @@ class Bond {
         //         this.b = 0;
         //     }
         // }
-        // this.particle2.accumulateForce(force);
+        this.particle2.accumulateForce(vec3.negate(force, force));
     }
 }
