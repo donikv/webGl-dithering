@@ -1,5 +1,5 @@
 class ParticleMesh {
-    constructor (file) {
+    constructor (file, k = 35.0, b = 4.2) {
         var obj = loadObjFromFile(file);
         var i = 0;
         this.vertices_ = obj.vertices.map(vert => {
@@ -12,9 +12,9 @@ class ParticleMesh {
         var addedBonds = [];
 
         for(var i = 0; i < obj.indices.length; i+= 3) {
-            this.addToBonds(addedBonds, i, i+1, obj);
-            this.addToBonds(addedBonds, i+1, i+2, obj);
-            this.addToBonds(addedBonds, i+2,i, obj);
+            this.addToBonds(addedBonds, i, i+1, obj, k, b);
+            this.addToBonds(addedBonds, i+1, i+2, obj, k, b);
+            this.addToBonds(addedBonds, i+2,i, obj, k, b);
             // this.bonds.push(new Bond(this.vertices_, obj.indices[i], obj.indices[i+1]));
             // this.bonds.push(new Bond(this.vertices_, obj.indices[i+1], obj.indices[i+2]));
             // this.bonds.push(new Bond(this.vertices_, obj.indices[i+2], obj.indices[i]));
@@ -38,7 +38,7 @@ class ParticleMesh {
         this.normales = this.calculateNormales();
     }
 
-    addToBonds(addedIndices, i1, i2, obj) {
+    addToBonds(addedIndices, i1, i2, obj, k, b) {
         var shouldReturn = false;
         addedIndices.forEach(indices => {
             if((indices.first == i1 && indices.second == i2) || (indices.first == i1 && indices.second == i2)) {
@@ -48,7 +48,7 @@ class ParticleMesh {
         });
         if(shouldReturn) return;
 
-        this.bonds.push(new Bond(this.vertices_, obj.indices[i1], obj.indices[i2]));
+        this.bonds.push(new Bond(this.vertices_, obj.indices[i1], obj.indices[i2], k, b));
         addedIndices.push({
             first: i1,
             second: i2

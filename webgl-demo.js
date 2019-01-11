@@ -15,7 +15,7 @@ var tPressed = false;
 var Keys = { left: 37, up: 38, right: 39, down: 40 , s: 83, x: 88, c: 67, t: 84};
 
 //Objects and additional info about current object
-const objects = [new ParticleMesh('objekti/teapot.obj'), new ParticleMesh('objekti/sheet_small.obj'),  new ParticleMesh('objekti/sheet_large.obj'),  new ParticleMesh('objekti/kocka.obj')];
+const objects = [new ParticleMesh('objekti/teapot.obj'), new ParticleMesh('objekti/sheet_small.obj'),  new ParticleMesh('objekti/sheet_large.obj'), new ParticleMesh('objekti/sheet_detailed.obj', 70.0, 2.0), new ParticleMesh('objekti/kocka.obj')];
 const objectCount = objects.length;
 var currentObjectIndex = 0;
 var object = objects[currentObjectIndex];
