@@ -3,6 +3,7 @@ const breakPoint = 50.0;
 class Particle {
     constructor(position, mass = 0.5, isFixed = false) {
         this.position = position;
+        this.oldPosition = position;
         this.velocity = vec3.create();
         this.acceleration = vec3.create();
         this.mass = mass
@@ -22,8 +23,19 @@ class Particle {
         }
         vec3.add(this.force, this.force, vec3.fromValues(0.0,-1.0,0.0));
         vec3.add(this.velocity, this.velocity, vec3.scale(vec3.create(), this.force, dt/this.mass));
+        this.oldPosition = this.position;
         vec3.add(this.position, this.position, vec3.scale(vec3.create(), this.velocity, dt));
         this.force = vec3.fromValues(0.0,0.0,0.0);
+    }
+
+    checkForCollisions(objects) {
+        for(var i = 0; i<objects.length; i++){
+            if(objects[i].isInside(this.position)) {
+                this.position = this.oldPosition;
+                this.velocity = vec3.create();
+                this.acceleration = vec3.create();
+            }
+        }
     }
 
     get positionVec4() {
