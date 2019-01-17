@@ -15,7 +15,7 @@ var tPressed = false;
 var Keys = { left: 37, up: 38, right: 39, down: 40 , s: 83, x: 88, c: 67, t: 84};
 
 //Objects and additional info about current object
-const objects = [new ParticleMesh('objekti/teapot.obj'), new ParticleMesh('objekti/sheet_small.obj'),  new ParticleMesh('objekti/sheet_large.obj'),  new ParticleMesh('objekti/kocka.obj')];
+const objects = [new ParticleMesh('objekti/teapot.obj'), new ParticleMesh('objekti/sheet_small.obj'),  new ParticleMesh('objekti/sheet_large.obj'), new ParticleMesh('objekti/sheet_detailed.obj', 70.0, 2.0), new ParticleMesh('objekti/kocka.obj')];
 const objectCount = objects.length;
 var currentObjectIndex = 0;
 var object = objects[currentObjectIndex];
@@ -83,6 +83,8 @@ function main() {
 
   var then = 0;
 
+  var staticObjects = [new Circle(vec3.fromValues(1.0,0,0), 1.0), new Circle(vec3.fromValues(0.75,0.75,0), 0.5)];
+
   function render(now) {
     now *= 0.001;  // convert to seconds
     const deltaTime = now - then;
@@ -100,7 +102,8 @@ function main() {
                             Math.random() * wind[1],
                             Math.random() * wind[2]));
         }
-        particle.applyForce(deltaTime)
+        particle.applyForce(deltaTime);
+        particle.checkForCollisions(staticObjects);
       });
       object.reloadCache();
     }
@@ -128,7 +131,7 @@ function main() {
       i++;
       gl.disable(gl.CULL_FACE);
       if(i === 1) {
-        offset = (minMax.min[0]*2);
+        offset = (minMax.min[0]*2) == 0 ? -2 : (minMax.min[0]*2);
       }
     });
     
