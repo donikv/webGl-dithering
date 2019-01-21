@@ -7,7 +7,7 @@ This program is used to showcase 2 distinct features.
 2. Cloth physics simulation
 
 ### Dithering algorithm
-The intial idea for the algorith came from this [article](http://alex-charlton.com/posts/Dithering_on_the_GPU/) describing the use of dithering in modern graphics for aesthetic purposes. The algorithm is implemented to take advantage of the GPU paralelization and the whole dithering process is done on the GPU. A nice example this effect is done in the game [Return of the Obra Dinn (2018)](https://obradinn.com).
+The intial idea for the algorithm came from this [article](http://alex-charlton.com/posts/Dithering_on_the_GPU/) describing the use of dithering in modern graphics for aesthetic purposes. The algorithm is implemented to take advantage of the GPU paralelization and the whole dithering process is done on the GPU. A nice example this effect is done in the game [Return of the Obra Dinn (2018)](https://obradinn.com).
 
 ## Cloth physics simulation
 Second part of the project is simulation of a piece of cloth in the wind based on a system of springs and masses. Numerical integration is done using the mixed Euler method. The project also implements collision with simple objects, such as spheres and cubes.
