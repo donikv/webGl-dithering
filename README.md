@@ -38,3 +38,9 @@ The program implements rudimentary options for controlling the camera and changi
 | x key                       | Toggle physics                                    |
 | s key                       | Toggle wind direction                             |
 | w key                       | Toggle collision                                  | 
+
+### Examples
+
+![Dithering](https://imgur.com/60TY9xH)
+
+![Cloth simulation](https://imgur.com/JuPf4ki)
