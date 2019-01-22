@@ -43,4 +43,4 @@ The program implements rudimentary options for controlling the camera and changi
 
 ![Dithering](https://i.imgur.com/60TY9xH.png)
 
-![Cloth simulation](https://i.imgur.com/60TY9xH.png)
+![Cloth simulation](https://i.imgur.com/JuPf4ki.png)
