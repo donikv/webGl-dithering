@@ -41,6 +41,6 @@ The program implements rudimentary options for controlling the camera and changi
 
 ### Examples
 
-![Dithering](https://imgur.com/60TY9xH)
+![Dithering](https://i.imgur.com/60TY9xH.png)
 
-![Cloth simulation](https://imgur.com/JuPf4ki)
+![Cloth simulation](https://i.imgur.com/60TY9xH.png)
